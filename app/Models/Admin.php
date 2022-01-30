@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Admin extends Model
 {
     use HasFactory;
 
-    protected $fillable= [
-        'name','link','soft_delete','is_draft'
+    protected $fillable = [
+        'name','email','password','is_active','is_draft','soft_delete'
     ];
 }

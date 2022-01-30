@@ -37,6 +37,14 @@ Route::get('/shopdetail', function () {
     return view('elements.shop-detail');
 });
 
+Route::get('/admin',function(){
+    return view('backend.home');
+});
+
+Route::get('/table',function(){
+    return view('backend.table');
+});
+
 
 
 

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Carts extends Model
 {
     use HasFactory;
 
-    protected $fillable= [
-        'name','link','soft_delete','is_draft'
+    protected $fillabel = [
+        'product_id','picture','title','qty','unit_price', 'total_price','user_id'
     ];
 }

@@ -2,7 +2,7 @@
 @section('content')
 
 
-    @include('elements.breadcrumb',['title'=>'Shop-detail'])
+    @include('elements.breadcrumb',['title'=>'Shop Detail'])
 
     <!--markup for wrapper-->
     <section id="wrapper">
