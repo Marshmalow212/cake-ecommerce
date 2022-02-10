@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\FileUpload;
 
 class ProductsController extends Controller
 {
@@ -14,7 +16,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Products::all();
+        $categories = Category::all();
+        // dd($products);
+        return view('components.backend.products.index',compact('products','categories'));
     }
 
     /**
@@ -24,7 +29,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('components.backend.products.create',compact('categories'));
     }
 
     /**
@@ -35,7 +41,16 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fileuploadobj = new FileUpload();
+        // dd($request->all());
+        $product = new Products($request->all());
+        if(!isset($request->is_active))$product->is_active = 0;
+        if(!isset($request->is_draft))$product->is_draft = 0;
+        $picture = $fileuploadobj->fileUpload($request->file('picture'),'Product');
+        $product->picture = $picture;
+        $product->save();
+        return redirect()->route('products.index');
+
     }
 
     /**
@@ -44,9 +59,11 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show($id)
     {
-        //
+        // dd($products->title);
+        $products = Products::where('id',$id)->first();
+        return view('components.backend.products.show',compact('products'));
     }
 
     /**
@@ -55,9 +72,11 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products)
+    public function edit($id)
     {
-        //
+        $products = Products::where('id',$id)->first();
+        $categories = Category::all();
+        return view('components.backend.products.edit',compact('products','categories'));
     }
 
     /**
@@ -67,9 +86,20 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, $id)
     {
-        //
+        $products = Products::where('id',$id)->first();
+        $fileuploadobj = new FileUpload();
+        $picture = $fileuploadobj->fileUpload($request->file('picture'),'Product');
+        if(empty($picture))$picture = $products->picture;
+        // dd($request->all());
+        $products->fill($request->all());
+        if(!isset($request->is_active))$products->is_active = 0;
+        if(!isset($request->is_draft))$products->is_draft = 0;
+        $products->picture = $picture;
+        $products->save();
+        return redirect()->route('products.index');
+
     }
 
     /**
@@ -80,6 +110,8 @@ class ProductsController extends Controller
      */
     public function destroy(Products $products)
     {
-        //
+        $products->delete();
+        return redirect()->route('products.index');
+
     }
 }

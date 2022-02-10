@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('components.backend.categories.index',compact('categories'));
+
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('components.backend.categories.create');
     }
 
     /**
@@ -35,7 +37,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category($request->all());
+        if(!isset($request->soft_delete))$category->soft_delete = 0;
+        if(!isset($request->is_draft))$category->is_draft = 0;
+        $category->save();
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -46,7 +52,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('components.backend.categories.show',compact('category'));
     }
 
     /**
@@ -57,7 +63,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('components.backend.categories.edit',compact('category'));
     }
 
     /**
@@ -69,7 +75,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->fill($request->all());
+        if(!isset($request->soft_delete))$category->soft_delete = 0;
+        if(!isset($request->is_draft))$category->is_draft = 0;
+        $category->save();
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -80,6 +90,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }

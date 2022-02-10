@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +48,9 @@ Route::get('/table',function(){
     return view('backend.table');
 });
 
+Route::resource('sliders',SliderController::class);
+Route::resource('products',ProductsController::class);
+Route::resource('categories',CategoryController::class);
 
 
 
