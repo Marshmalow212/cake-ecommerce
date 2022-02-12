@@ -2,6 +2,7 @@
 <!--Best seller begin-->
 <section id="best-seller" class="mt-2">
     <div class="container">
+        
         <div class="d-flex justify-content-between best-seller mb-2 ">
             <h2>Cup<span>Cakes</span></h2>
             

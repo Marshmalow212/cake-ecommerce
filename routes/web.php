@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
