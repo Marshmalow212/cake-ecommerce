@@ -2,17 +2,19 @@
 <!--Best seller begin-->
 <section id="best-seller" class="mt-2">
     <div class="container">
-        
+
         <div class="d-flex justify-content-between best-seller mb-2 ">
             <h2>Cup<span>Cakes</span></h2>
-            
+
         </div>
             <div class="row row-cols-1 row-cols-md-4 g-4 text-center best-seller-items d-flex justify-content-between">
+                @foreach ($products as $product)
+                {{-- product card begin --}}
                 <div class="col">
                     <div class="card">
-                        <a title="Grandpa Rocking Chair" href="/shopdetail"><img src="img/shop/product-2.jpg" class="card-img-top" alt="Best Sellers"></a>
+                        <a title="{{$product->title}}" href="/shopdetail"><img src="{{asset('storage/uploads/'.$product->picture)}}" class="card-img-top" alt="{{$product->picture}}"></a>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="#">Chocolate Caramel</a></h5>
+                            <h5 class="card-title"><a href="#">{{$product->title}}</a></h5>
                             <p class="card-text">
                                 <i class="fas fa-star fa-xs"></i>
                                 <i class="fas fa-star fa-xs"></i>
@@ -21,77 +23,14 @@
                                 <i class="fas fa-star fa-xs"></i>
                                 <i class="fas fa-star fa-xs"></i>
                             </p>
-                            <p class="dollar">&dollar;100</p>
+                            <p class="dollar">&dollar;{{number_format($product->special_price,2,".",".")}}</p>
                             <div><button type="button" class="btn btn-light add-to-cart">ADD TO CART</button></div>
                         </div>
-
                     </div>
-
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <a title="Nitraa Lydon Dining Table" href="#"><img src="img/shop/product-7.jpg" class="card-img-top" alt="Best Sellers"></a>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Red Velvet Vanilla</a></h5>
-                            <p class="card-text">
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                            </p>
-                            <p class="dollar">&dollar;100</p>
-                            <div><button type="button" class="btn btn-light add-to-cart">ADD TO CART</button></div>
-                        </div>
+                {{-- product card end --}}
 
-                    </div>
-
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a title="Table Lamp in Steam Wood" href="#"><img src="img/shop/product-8.jpg" class="card-img-top" alt="Best Sellers"></a>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Red Cherry Vanilla</a>
-                                </h5>
-                            <p class="card-text">
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                            </p>
-                            <p class="dollar">&dollar;100</p>
-                            <div><button type="button" class="btn btn-light add-to-cart">ADD TO CART</button></div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="col">
-                    <div class="card">
-                       <a title="Table Lamp" href="#"><img src="img/shop/product-9.jpg" class="card-img-top" alt="Best Sellers"></a>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Vanilla Cream</a></h5>
-                            <p class="card-text">
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                                <i class="fas fa-star fa-xs"></i>
-                            </p>
-                            <p class="dollar">&dollar;100</p>
-                            <div><button type="button" class="btn btn-light add-to-cart">ADD TO CART</button></div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+                @endforeach
     </div>
 
 

@@ -21,9 +21,7 @@ Route::get('/master', function () {
     return view('components.master');
 });
 
-Route::get('/', function () {
-    return view('elements.index');
-});
+Route::get('/',[ShopController::class,'homepage']);
 
 Route::get('/shop', function () {
     return view('elements.shop');

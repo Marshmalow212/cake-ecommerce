@@ -1,8 +1,8 @@
-@include('components.head')
-@include('components.header')
+@include('components.Templates.head')
+@include('components.Templates.header')
 
 <main id="master-slot">
     @yield('content')
 </main>
 
-@include('components.footer')
+@include('components.Templates.footer')

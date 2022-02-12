@@ -36,13 +36,13 @@
                 @endif
                 <td>{{$product->mrp}}</td>
                 <td>{{$product->special_price}}</td>
-                @foreach ($categories as $category)
-                @if ($category->id == $product->category_id)
+                {{-- @foreach ($categories as $category) --}}
+                {{-- @if ($category->id == $product->category_id) --}}
                     <td>
-                        {{$category->name}}
+                        {{$product->category->name}}
                     </td>
-                    @endif
-                @endforeach
+                    {{-- @endif --}}
+                {{-- @endforeach --}}
                 <td>{{$product->created_at}}</td>
                 <td>{{$product->updated_at}}</td>
                     <td>

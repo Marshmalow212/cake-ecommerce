@@ -1,3 +1,5 @@
+
+
 <!-- carousel begin -->
 <section id=carouselHome>
     <!--carousel-->
@@ -9,18 +11,17 @@
             <button type="button" data-bs-target="#homepageCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="img/slider/blog-0.jpg" class="d-block w-100" alt="blog-0.jpg">
+            @php
+                $_active='active';
+            @endphp
+            @foreach ($sliders as $slider)
+            <div class="carousel-item {{$_active}}">
+                <img src="{{asset('storage/uploads/'.$slider->picture)}}" class="d-block w-100" alt="{{$slider->picture}}">
             </div>
-            <div class="carousel-item">
-                <img src="img/slider/blog-1.jpg" class="d-block w-100" alt="blog-1.jpg">
-            </div>
-            <div class="carousel-item">
-                <img src="img/slider/blog-3.jpg" class="d-block w-100" alt="blog-2.jpg">
-            </div>
-            <div class="carousel-item">
-                <img src="img/slider/blog-4.jpg" class="d-block w-100" alt="blog-3.jpg">
-            </div>
+            @php
+                $_active='';
+            @endphp
+            @endforeach
 
         </div>
         <button class="carousel-control-prev " type="button" data-bs-target="#homepageCarousel" data-bs-slide="prev">

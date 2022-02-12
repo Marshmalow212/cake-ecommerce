@@ -14,7 +14,7 @@ class Products extends Model
         'title','description','picture','is_active','is_draft','mrp','special_price','category_id'
     ];
 
-    public function category_id(){
-        return $this->belongsTo('Category');
+    public function category(){
+        return $this->belongsTo(Category::class,'category_id');
     }
 }
