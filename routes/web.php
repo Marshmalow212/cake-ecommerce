@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ProductsController;
@@ -50,6 +51,7 @@ Route::get('/table',function(){
 Route::resource('sliders',SliderController::class);
 Route::resource('products',ProductsController::class);
 Route::resource('categories',CategoryController::class);
+Route::resource('carts',CartsController::class);
 
 
 

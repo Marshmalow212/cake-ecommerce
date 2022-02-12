@@ -2,15 +2,17 @@
 @section('content')
 <section id="sliders__index">
     <div class="container">
-        <div class="row col-md-6">
+        <div class="row col-md-10">
             <h1 class="text-center mb-4 mt-2"> Products </h1>
             <div class="inline-list">
-                <p class="inline-list-item nav-link">        <a href="{{route('products.create')}}" class="btn btn-outline-dark">Create Product</a>  <a href="trashlist.php" class="btn btn-outline-dark">Trash</a></p>
+                <p class="inline-list-item nav-link">
+                    <a href="{{route('products.create')}}" class="btn btn-outline-dark">Create Product</a>  <a href="trashlist.php" class="btn btn-outline-dark">Trash</a></p>
             </div>
 
             <table class="table">
                 <thead>
                 <tr>
+                    <th scope="col">PID</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Picture</th>
@@ -26,6 +28,7 @@
                 <tbody >
                 @foreach($products as $product)
                 <tr>
+                <td>{{$product->id}}</td>
                 <td>{{$product->title}}</td>
                 <td>{{$product->description}}</td>
                 <td>{{$product->picture}}</td>
