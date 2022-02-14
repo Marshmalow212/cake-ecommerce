@@ -6,6 +6,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,13 @@ Route::get('/shopdetail', function () {
 Route::get('/admin',function(){
     return view('backend.home');
 });
+Route::prefix('admins')->group(function () {
+    Route::get('/',[AdminController::class,'index']);
+    Route::get('/register',[AdminController::class,'register'])->name('admins.register');
+    Route::get('/auth',[AdminController::class,'authenticate'])->name('admins.auth');
+    Route::get('/logout',[AdminController::class,'logout'])->name('admins.logout');
+
+});
 
 Route::get('/table',function(){
     return view('backend.table');
@@ -52,6 +60,7 @@ Route::resource('sliders',SliderController::class);
 Route::resource('products',ProductsController::class);
 Route::resource('categories',CategoryController::class);
 Route::resource('carts',CartsController::class);
+Route::resource('admins', AdminController::class);
 
 
 

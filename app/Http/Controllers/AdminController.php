@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminFormValidation;
 use App\Models\Admin;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -14,7 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.server.server-login');
     }
 
     /**
@@ -33,9 +37,19 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminFormValidation $request)
     {
-        //
+        // dd($request);
+        $valid = $request->validated();
+        // dd($valid);
+        $admin = new Admin($valid);
+        $hashedpass = Hash::make($valid['password']);
+        $admin->password = $admin->confirm_password = $hashedpass;
+        // dd($admin);
+        $admin->save();
+
+        return redirect()->route('admins.index')->with('success','Admin Registered!');
+
     }
 
     /**
@@ -81,5 +95,23 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function register(){
+        return view('backend.server.server-register');
+    }
+
+    public function authenticate(Request $request){
+        $credentials = $request->only('email','password');
+        // dd($credentials);
+        $check = Auth::attempt($credentials);
+        // dd($check);
+        // dd(auth()->user());
+        return view('backend.home')->with('success','Welcome to Cake Avenue Dashboard');
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('admins.index');
     }
 }

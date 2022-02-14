@@ -18,9 +18,10 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            $table->boolean('is_active');
-            $table->boolean('is_draft');
-            $table->boolean('soft_delete');
+            $table->string('confirm_password');
+            $table->boolean('is_active')->default(0);
+            $table->boolean('is_draft')->default(0);
+            $table->boolean('soft_delete')->default(0);
             $table->timestamps();
         });
     }
